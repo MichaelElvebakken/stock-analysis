@@ -11,7 +11,7 @@ data = stock.balance_sheet
 x = data.columns
 
 
-print(data.head(30))
+print(data.head(50))
 plt.gca().xaxis.axis_date
 plt.ylabel('Billions of USD')
 plt.plot(x, data.loc['Net Debt'] / 1000000000, linestyle='solid', label='Net Debt', color='blue')
