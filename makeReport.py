@@ -2,6 +2,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import pandas as pd
 import io
+import sys
 
 #reportlab imports - Using Platypus for simplicity 
 from reportlab.lib.pagesizes import letter
@@ -12,10 +13,15 @@ from reportlab.lib.units import cm
 
 import makeGraphs as mg
 
+ticker = sys.argv[1]
+
 
 def main():
+    #YFinance DATA
+    stock = yf.Ticker(f"{ticker}")
+
     #Create PDF
-    pdf = SimpleDocTemplate("EQNR.pdf", pagesize=letter)
+    pdf = SimpleDocTemplate(f'{ticker}.pdf', pagesize=letter)
 
     #Leading style
     line_spacing = ParagraphStyle(
@@ -25,10 +31,8 @@ def main():
 
     styles = getSampleStyleSheet()
     title_style = styles['Title']
-    title = Paragraph("Equinor (EQNR) Report", title_style)
+    title = Paragraph(f"{stock.info['shortName']} ({ticker}) Report", title_style)
 
-    #YFinance DATA
-    stock = yf.Ticker("EQNR")
     elements = []
     elements.append(title)
 
