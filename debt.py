@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import datetime
 from matplotlib.dates import num2date
+
 plt.style.use('seaborn-v0_8')
 
 stock = yf.Ticker("EQNR")
